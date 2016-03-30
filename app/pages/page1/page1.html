@@ -1,0 +1,336 @@
+<ion-navbar *navbar>
+  <ion-title>Acuity Score Form</ion-title>
+</ion-navbar>
+
+<ion-content class="page1">
+
+  <!--
+  http://www.americannursetoday.com/wp-content/uploads/2014/03/ant3-Workforce-Management-Acuity-304.pdf
+
+  The chart below shows the hospital’s new acuity tool. Rating options are 1 through 4, with 1 indicating the lowest acuity and
+  4 indicating the highest acuity. Ratings are based on nursing time needed to complete a task, emotional and physical energy
+  expenditure required, expertise required, frequency of tasks and interventions, and follow-up assessments related to a specific
+  task. Ratings for all five criteria categories are summed up to obtain a total acuity score for each patient, ranging from 1 to 60.
+  Then the total acuity scores are clustered into acuity category scores, which range from 1 to 4, with 1 being the lowest acuity and
+  4 being the highest
+  -->
+
+
+  <ion-item-group>
+
+    <ion-item-divider>Complicated procedures</ion-item-divider>
+
+    <ion-list-header>Level 1</ion-list-header>
+    <ion-item>
+      <ion-label>Pulse ox</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Foley</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Oral care</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Telemetry</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 2</ion-list-header>
+    <ion-item>
+      <ion-label>> 4 L O2 nasal cannula</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>BIPAP/CPAP @ naps/night</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Routine trach care ≤ 2 times/shift</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>PICC/central line</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>NG tube</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Incontinent</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>PCA</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rectal tube</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Isolation</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fall risk</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 3</ion-list-header>
+    <ion-item>
+      <ion-label>High-flow O2/vent</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Continuous BIPAP</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>New trach or frequent suctioning</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Trach care ≥ 3 times/shift</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Wound/skin care</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ostomy</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Assist w/ ADLs</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Vitals or neurochecks q 2 h</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Continuous bladder irrigation</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Chest tube</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Peritoneal dialysis</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Opioid/alcohol withdrawal assessment</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Unfinished admit</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 4</ion-list-header>
+    <ion-item>
+      <ion-label>Total care</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Restraints</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total feed</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Confused, restless combative</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>High fall risk/SOMA bed</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Post code/rapid response team</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+  </ion-item-group>
+
+  <ion-item-group>
+
+    <ion-item-divider>Education</ion-item-divider>
+
+    <ion-list-header>Level 1</ion-list-header>
+    <ion-item>
+      <ion-label>Standard (i.e., DM, HF)</ion-label>
+      <ion-checkbox checked="true"></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 2</ion-list-header>
+    <ion-item>
+      <ion-label>New meds, side effects</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 3</ion-list-header>
+    <ion-item>
+      <ion-label>Discharge today</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Family education</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pre-/postprocedure</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 4</ion-list-header>
+    <ion-item>
+      <ion-label>New diagnosis</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Inability to comprehend</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Multiple comorbidities</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+  </ion-item-group>
+
+  <ion-item-group>
+
+    <ion-item-divider>Psychosocial or therapeutic interventions</ion-item-divider>
+
+    <ion-list-header>Level 1</ion-list-header>
+    <ion-item>
+      <ion-label>≤ 2 interventions per shift</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 2</ion-list-header>
+    <ion-item>
+      <ion-label>3-5 interventions per shift</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 3</ion-list-header>
+    <ion-item>
+      <ion-label>6-10 interventions per shift</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Diagnosis of delirium</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>End of life</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 4</ion-list-header>
+    <ion-item>
+      <ion-label>> 10 interventions per shift</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+  </ion-item-group>
+
+  <ion-item-group>
+
+    <ion-item-divider>Medications (oral)</ion-item-divider>
+
+    <ion-list-header>Level 1</ion-list-header>
+    <ion-item>
+      <ion-label>1-5</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-list-header>Level 2</ion-list-header>
+    <ion-item>
+      <ion-label>6-10</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-list-header>Level 3</ion-list-header>
+    <ion-item>
+      <ion-label>11-15</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-list-header>Level 4</ion-list-header>
+    <ion-item>
+      <ion-label>≥ 16</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+  </ion-item-group>
+
+  <ion-item-group>
+
+    <ion-item-divider>Complicated IV drugs & other meds</ion-item-divider>
+
+    <ion-list-header>Level 1</ion-list-header>
+    <ion-item>
+      <ion-label>Glucometer with coverage</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 2</ion-list-header>
+    <ion-item>
+      <ion-label>2-5 IV meds</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 3</ion-list-header>
+    <ion-item>
+      <ion-label>K+ protocol</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Heparin protocol</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>> 5 IV meds</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>TPN</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+    <ion-list-header>Level 4</ion-list-header>
+    <ion-item>
+      <ion-label>Blood/blood products</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tube feeding/meds</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cardiac drip (amiodarone Cardizem, dopamine)</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Insulin drip</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+
+  </ion-item-group>
+
+  <!--
+  Acuity category scores:
+  1: 1 to 15 2: 16 to 30 3: 31 to 45 4: > 45 or new admission
+  -->
+
+
+</ion-content>
