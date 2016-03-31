@@ -4,4 +4,14 @@
 
 <ion-content class="patients">
 
+  <ion-list>
+    <ion-item *ngFor="#patient of patients" (click)="edit(patient)">
+      {{patient.name || 'Anonymous'}} (Score: {{patient.score}})
+    </ion-item>
+  </ion-list>
+
+  <button fab fab-bottom fab-right (click)="add()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+
 </ion-content>

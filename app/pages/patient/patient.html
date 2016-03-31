@@ -1,5 +1,5 @@
 <ion-navbar *navbar>
-  <ion-title>Acuity Score Form</ion-title>
+  <ion-title>New Patient</ion-title>
 </ion-navbar>
 
 <ion-content class="patient">
@@ -15,8 +15,10 @@
   4 being the highest
   -->
 
-  <button (click)="calculate()">Calculate</button>
-  <ion-item>{{calculation}}</ion-item>
+  <ion-item>
+    <ion-label floating>Patient's Name</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="patient.name"></ion-input>
+  </ion-item>
 
   <ion-item-group *ngFor="#section of patient.form">
     <ion-item-divider>{{section.label}}</ion-item-divider>
@@ -28,6 +30,8 @@
       </ion-item>
     </div>
   </ion-item-group>
+
+  <button (click)="add()" block>Add</button>
 
   <!--
   Acuity category scores:
