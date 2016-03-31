@@ -3,6 +3,8 @@ import * as _ from 'lodash';
 
 class Patient {
   form: Object[];
+  name: string;
+
   constructor() {
     this.form = [{
       label: 'Complicated procedures',
@@ -105,9 +107,9 @@ class Patient {
 }
 
 @Page({
-  templateUrl: 'build/pages/page1/page1.html',
+  templateUrl: 'build/pages/patient/patient.html',
 })
-export class Page1 {
+export class PatientComponent {
   patient: Patient;
   calculation: number;
 
