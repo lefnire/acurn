@@ -20,15 +20,14 @@ export class AssignmentsPage {
   constructor() {
     this.nurses = JSON.parse(localStorage.getItem('nurses') || "[]");
     this.redistribute();
-    window._patients = this; // FIXME
+    patients.ee.subscribe(data => this.redistribute());
   }
 
   redistribute() {
     let {nurses} = this;
+    if (!nurses[0]) return;
     nurses.forEach(n => n.patients = []);
-    _.sortBy(patients, 'score').reverse().forEach((p, i) => {
-      // let idx = i % (nurses.length - 1);
-      // idx = isNaN(idx) ? 0 : idx;
+    _.sortBy(patients.patients, 'score').reverse().forEach((p, i) => {
       let idx = i % nurses.length;
       nurses[idx].patients.push(p);
     });

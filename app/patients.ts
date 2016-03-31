@@ -1,9 +1,11 @@
+import {EventEmitter} from 'angular2/core';
 import * as _ from 'lodash';
 
 export class Patient {
   form: Object[];
   room: string;
   isNew: boolean;
+  score: number;
 
   constructor() {
     this.isNew = true;
@@ -107,4 +109,25 @@ export class Patient {
   }
 }
 
-export let patients = JSON.parse(localStorage.getItem('patients') || "[]");
+class Patients {
+  patients: Patient[];
+  ee: EventEmitter<Patient[]>;
+
+  constructor(){
+    this.patients = JSON.parse(localStorage.getItem('patients') || "[]");
+    this.ee = new EventEmitter();
+  }
+
+  add(patient) {
+    this.patients.push(patient);
+    this.ee.next(patients);
+    localStorage.setItem('patients', JSON.stringify(this.patients));
+  }
+
+  remove(i) {
+    this.patients.splice(i, 1);
+    this.ee.next(patients);
+    localStorage.setItem('patients', JSON.stringify(this.patients));
+  }
+}
+export const patients = new Patients();

@@ -1,5 +1,5 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {patients} from '../../patients';
+import {Patient, patients} from '../../patients';
 import * as _ from 'lodash';
 
 @Page({
@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 export class PatientPage {
   nav: NavController;
   //navParams: NavParams;
-  patient: any;
+  patient: Patient;
 
   constructor(nav: NavController, navParams: NavParams){
     this.nav = nav;
@@ -23,9 +23,7 @@ export class PatientPage {
       }, 0);
     }, 0);
     this.patient.isNew = false;
-    patients.push(this.patient);
-    localStorage.setItem("patients", JSON.stringify(patients));
+    patients.add(this.patient);
     this.nav.pop();
-    window._patients && window._patients.redistribute();
   }
 }
