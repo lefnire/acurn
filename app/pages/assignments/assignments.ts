@@ -41,4 +41,16 @@ export class AssignmentsPage {
     this.redistribute();
   }
 
+  save(nurse, name) {
+    nurse.name = name;
+    nurse.editing = false;
+    localStorage.setItem('nurses', JSON.stringify(this.nurses));
+  }
+
+  remove(i) {
+    this.nurses.splice(i,1);
+    this.redistribute();
+    localStorage.setItem('nurses', JSON.stringify(this.nurses));
+  }
+
 }
