@@ -109,8 +109,19 @@ class Patient {
 })
 export class Page1 {
   patient: Patient;
+  calculation: number;
 
   constructor() {
     this.patient =  new Patient();
+    this.calculation = 0;
+  }
+
+  calculate() {
+    // TODO Chain outer with _.zip, so we only need one _.reduce level
+    this.calculation = _(this.patient.form).map('items').reduce((sum, section) => {
+      return sum + _.reduce(section, (sum, questions, level) => {
+        return sum + _(questions).map(q => q.value || 0).sum() * (level + 1);
+      }, 0);
+    }, 0);
   }
 }

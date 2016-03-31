@@ -15,6 +15,9 @@
   4 being the highest
   -->
 
+  <button (click)="calculate()">Calculate</button>
+  <ion-item>{{calculation}}</ion-item>
+
   <ion-item-group *ngFor="#section of patient.form">
     <ion-item-divider>{{section.label}}</ion-item-divider>
     <div *ngFor="#level of section.items; #i = index">
