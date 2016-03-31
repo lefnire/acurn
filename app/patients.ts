@@ -3,8 +3,10 @@ import * as _ from 'lodash';
 export class Patient {
   form: Object[];
   room: string;
+  isNew: boolean;
 
   constructor() {
+    this.isNew = true;
     this.form = [{
       label: 'Complicated procedures',
       items: [[

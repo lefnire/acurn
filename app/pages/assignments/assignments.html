@@ -14,9 +14,13 @@
   </ion-item>
 
   <ion-item-group *ngFor="#nurse of nurses">
-    <ion-item-divider>{{nurse.name}}</ion-item-divider>
+    <ion-item-divider>
+      {{nurse.name}}
+      <!-- <ion-icon item-right name="trash"></ion-icon> -->
+    </ion-item-divider>
     <ion-item *ngFor="#patient of nurse.patients">
-      {{patient.room}} - {{patient.score}}
+      <h2>Room #{{patient.room}}</h2>
+      <p>Score: {{patient.score}}</p>
     </ion-item>
 
   </ion-item-group>

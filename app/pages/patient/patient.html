@@ -1,5 +1,5 @@
 <ion-navbar *navbar>
-  <ion-title>New Patient</ion-title>
+  <ion-title>{{patient.isNew ? "New Patient" : "Edit Patient"}}</ion-title>
 </ion-navbar>
 
 <ion-content class="patient">
@@ -31,7 +31,7 @@
     </div>
   </ion-item-group>
 
-  <button (click)="add()" block>Add</button>
+  <button (click)="save()" block>Add</button>
 
   <!--
   Acuity category scores:
