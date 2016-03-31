@@ -4,6 +4,12 @@
 
 <ion-content class="assignments">
 
+  <ion-card *ngIf="!nurses[0]">
+    <ion-card-content>
+      <p>Here nurses will be assigned to patients in an effort to equally distribute load (based on acuity). Click (+) to add a nurse, and patients will be automatically distributed.</p>
+      <p>Note: we're working on manual assignment (with visual help); follow <a href="https://github.com/driftyco/ionic/issues/5595" target="_blank">this issue</a>.</p>
+    </ion-card-content>
+  </ion-card>
 
   <ion-item *ngIf='adding'>
     <ion-label floating>Nurse's Name</ion-label>
