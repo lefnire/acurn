@@ -6,7 +6,7 @@
 
   <ion-list>
     <ion-item *ngFor="#patient of patients" (click)="edit(patient)">
-      {{patient.name || 'Anonymous'}} (Score: {{patient.score}})
+      {{patient.room || 'Anonymous'}} (Score: {{patient.score}})
     </ion-item>
   </ion-list>
 

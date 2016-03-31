@@ -4,4 +4,26 @@
 
 <ion-content class="assignments">
 
+
+  <ion-item *ngIf='adding'>
+    <ion-label floating>Nurse's Name</ion-label>
+    <ion-input type="text" #name autofocus></ion-input>
+
+    <button outline item-right (click)="add(name.value)">Add</button>
+    <button outline item-right (click)="adding = false">Cancel</button>
+  </ion-item>
+
+  <ion-item-group *ngFor="#nurse of nurses">
+    <ion-item-divider>{{nurse.name}}</ion-item-divider>
+    <ion-item *ngFor="#patient of nurse.patients">
+      {{patient.room}} - {{patient.score}}
+    </ion-item>
+
+  </ion-item-group>
+
+
+  <button fab fab-bottom fab-right (click)="adding = true" *ngIf="!adding">
+    <ion-icon name="add"></ion-icon>
+  </button>
+
 </ion-content>

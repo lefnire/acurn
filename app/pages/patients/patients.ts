@@ -1,130 +1,27 @@
 import {Page, NavController} from 'ionic-angular';
-import {PatientComponent} from '../patient/patient';
+import {PatientPage} from '../patient/patient';
+import {Patient, patients} from '../../patients';
 
-class Patient {
-  form: Object[];
-  name: string;
-
-  constructor() {
-    this.form = [{
-      label: 'Complicated procedures',
-      items: [[
-        {label: 'Pulse ox'},
-        {label: 'Foley'},
-        {label: 'Oral care'},
-        {label: 'Telemetry'},
-      ], [
-        {label: '> 4 L O2 nasal cannula'},
-        {label: 'BIPAP/CPAP @ naps/night'},
-        {label: 'Routine trach care ≤ 2 times/shift'},
-        {label: 'PICC/central line'},
-        {label: 'NG tube'},
-        {label: 'Incontinent'},
-        {label: 'PCA'},
-        {label: 'Rectal tube'},
-        {label: 'Isolation'},
-        {label: 'Fall risk'},
-      ], [
-        {label: 'High-flow O2/vent'},
-        {label: 'Continuous BIPAP'},
-        {label: 'New trach or frequent suctioning'},
-        {label: 'Trach care ≥ 3 times/shift'},
-        {label: 'Wound/skin care'},
-        {label: 'Ostomy'},
-        {label: 'Assist w/ ADLs'},
-        {label: 'Vitals or neurochecks q 2 h'},
-        {label: 'Continuous bladder irrigation'},
-        {label: 'Chest tube'},
-        {label: 'Peritoneal dialysis'},
-        {label: 'Opioid/alcohol withdrawal assessment'},
-        {label: 'Unfinished admit'},
-      ], [
-        {label: 'Total care'},
-        {label: 'Restraints'},
-        {label: 'Total feed'},
-        {label: 'Confused, restless combative'},
-        {label: 'High fall risk/SOMA bed'},
-        {label: 'Post code/rapid response team'},
-      ]]
-    }, {
-      label: 'Education',
-      items: [[
-        {label: 'Standard (i.e., DM, HF)', value: true},
-      ], [
-        {label: 'New meds, side effects'},
-      ], [
-        {label: 'Discharge today'},
-        {label: 'Family education'},
-        {label: 'Pre-/postprocedure'},
-      ], [
-        {label: 'New diagnosis'},
-        {label: 'Inability to comprehend'},
-        {label: 'Multiple comorbidities'},
-      ]]
-    }, {
-      label: 'Psychosocial or therapeutic interventions',
-      items: [[
-        {label: '≤ 2 interventions per shift'},
-      ], [
-        {label: '3-5 interventions per shift'},
-      ], [
-        {label: '6-10 interventions per shift'},
-        {label: 'Diagnosis of delirium'},
-        {label: 'End of life'},
-      ], [
-        {label: '> 10 interventions per shift'},
-      ]]
-    }, {
-      label: 'Medications (oral)',
-      items: [[
-        {label: '1-5'},
-      ], [
-        {label: '6-10'},
-      ], [
-        {label: '11-15'},
-      ], [
-        {label: '≥ 16'},
-      ]]
-    }, {
-      label: 'Complicated IV drugs & other meds',
-      items: [[
-        {label: 'Glucometer with coverage'},
-      ], [
-        {label: '2-5 IV meds'},
-      ], [
-        {label: 'K+ protocol'},
-        {label: 'Heparin protocol'},
-        {label: '> 5 IV meds'},
-        {label: 'TPN'},
-      ], [
-        {label: 'Blood/blood products'},
-        {label: 'Tube feeding/meds'},
-        {label: 'Cardiac drip (amiodarone Cardizem, dopamine)'},
-        {label: 'Insulin drip'},
-      ]]
-    }];
-  }
-}
 
 @Page({
   templateUrl: 'build/pages/patients/patients.html',
 })
-export class PatientsComponent {
+export class PatientsPage {
   patients: Patient[];
   nav: NavController;
 
   constructor(nav: NavController) {
-    this.patients = [];
+    this.patients = patients;
     this.nav = nav;
   }
 
   add() {
-    let patient = new Patient();
-    this.patients.push(patient);
-    this.nav.push(PatientComponent, {patient});
+    this.nav.push(PatientPage, {
+      patient: new Patient()
+    });
   }
 
   edit(patient: Patient) {
-    this.nav.push(PatientComponent, {patient});
+    this.nav.push(PatientPage, {patient});
   }
 }

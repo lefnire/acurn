@@ -1,11 +1,11 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
+import {patients} from '../../patients';
 import * as _ from 'lodash';
 
 @Page({
   templateUrl: 'build/pages/patient/patient.html',
 })
-export class PatientComponent {
-  calculation: number;
+export class PatientPage {
   nav: NavController;
   //navParams: NavParams;
   patient: any;
@@ -22,6 +22,8 @@ export class PatientComponent {
         return sum + _(questions).map(q => q.value || 0).sum() * (level + 1);
       }, 0);
     }, 0);
+    patients.push(this.patient);
+    localStorage.setItem("patients", JSON.stringify(patients));
     this.nav.pop();
   }
 }
