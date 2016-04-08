@@ -1,5 +1,10 @@
 <ion-navbar *navbar>
   <ion-title>Assignments</ion-title>
+  <ion-buttons end>
+    <button (click)="toggleAuto()" [ngClass]="{'button-primary': auto, 'bar-button-outline': !auto, 'bar-button-default': false}">
+      Auto
+    </button>
+  </ion-buttons>
 </ion-navbar>
 
 <ion-content class="assignments">
@@ -36,7 +41,7 @@
 
     <div [dragula]='"bag-one"' style='min-height:10px;'>
       <ion-item *ngFor="#patient of nurse.patients">
-        <ion-icon name="move" class="ar-move-icon" item-left></ion-icon>
+        <ion-icon name="move" class="ar-move-icon" [style.display]="auto ? 'none' : 'inherit'" item-left></ion-icon>
         <h2>Room #{{patient.room}}</h2>
         <p>Score: {{patient.score}}</p>
       </ion-item>
