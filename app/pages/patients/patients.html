@@ -4,7 +4,7 @@
 
 <ion-content class="patients">
 
-  <ion-card *ngIf="!patients[0]">
+  <ion-card *ngIf="isEmpty(patients.items)">
     <ion-card-header>
       Patient Acuity & Nurse Assignments Tool
     </ion-card-header>
@@ -15,10 +15,10 @@
   </ion-card>
 
   <ion-list>
-    <ion-item *ngFor="#patient of patients; #i=index" (click)="edit(patient)">
+    <ion-item *ngFor="#patient of toArray(patients); #i=index" (click)="edit(patient)">
       <h2>Room #{{patient.room}}</h2>
       <p>Score: {{patient.score}}</p>
-      <ion-icon item-right (click)="remove(i)" name="trash"></ion-icon>
+      <ion-icon item-right (click)="remove(patient.id)" name="trash"></ion-icon>
     </ion-item>
   </ion-list>
 

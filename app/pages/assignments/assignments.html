@@ -25,7 +25,7 @@
   </ion-item>
 
   <ion-item-group *ngFor="#nurse of nurses; #i=index">
-    <ion-item-divider (click)="nurse.editing=true" *ngIf="!nurse.editing">
+    <ion-item-divider (click)="nurse.editing=true" *ngIf="!nurse.editing" [class]="nurse.score < 4 ? 'good' : nurse.score > 10 ? 'bad' : ''">
       {{nurse.name}}
     </ion-item-divider>
 
@@ -35,15 +35,16 @@
 
       <button outline item-right (click)="save(nurse, editName.value)">Add</button>
       <button outline item-right (click)="nurse.editing = false">Cancel</button>
-      <button outline item-right (click)="remove(i)">Delete</button>
+      <button outline item-right (click)="remove(nurse.id)">Delete</button>
     </ion-item>
 
 
     <div [dragula]='"bag-one"' style='min-height:10px;'>
-      <ion-item *ngFor="#patient of nurse.patients">
+      <ion-item *ngFor="#p of nurse.patients">
         <ion-icon name="move" class="ar-move-icon" [style.display]="auto ? 'none' : 'inherit'" item-left></ion-icon>
-        <h2>Room #{{patient.room}}</h2>
-        <p>Score: {{patient.score}}</p>
+
+        <h2>Room #{{patients[p].room}}</h2>
+        <p>Score: {{patients[p].score}}</p>
       </ion-item>
     </div>
 

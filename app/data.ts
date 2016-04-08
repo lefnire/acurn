@@ -1,13 +1,25 @@
-import {EventEmitter} from 'angular2/core';
 import * as _ from 'lodash';
+
+const ls = {
+  get(key, _default) {
+    let item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : _default;
+  },
+  set(key, obj) {
+    // don't block
+    setTimeout(() => localStorage.setItem(key, JSON.stringify(obj)));
+  }
+};
 
 export class Patient {
   form: Object[];
   room: string;
   isNew: boolean;
   score: number;
+  id: number;
 
   constructor() {
+    this.id = +new Date;
     this.isNew = true;
     this.form = [{
       label: 'Complicated procedures',
@@ -109,25 +121,87 @@ export class Patient {
   }
 }
 
-class Patients {
-  patients: Patient[];
-  ee: EventEmitter<Patient[]>;
+export class Nurse {
+  patients: string[]; // ids
+  id: number;
 
-  constructor(){
-    this.patients = JSON.parse(localStorage.getItem('patients') || "[]");
-    this.ee = new EventEmitter();
-  }
-
-  add(patient) {
-    this.patients.push(patient);
-    this.ee.next(patients);
-    localStorage.setItem('patients', JSON.stringify(this.patients));
-  }
-
-  remove(i) {
-    this.patients.splice(i, 1);
-    this.ee.next(patients);
-    localStorage.setItem('patients', JSON.stringify(this.patients));
+  constructor(public name: string){
+    this.id = +new Date;
+    this.patients = [];
   }
 }
-export const patients = new Patients();
+
+// ------------------
+
+export let meta = {
+  auto: ls.get('auto', true),
+  toggleAuto() {
+    this.auto = !this.auto;
+    ls.set('auto', this.auto);
+
+    if (this.auto)
+      return nurses.redistribute();
+    // else what?
+  }
+};
+
+export let patients = {
+  items: ls.get('patients', {}),
+  add(patient){
+    this.items[patient.id] = patient;
+    //nurses.addPatient(patient);
+    nurses.redistribute();
+    this.save();
+  },
+  remove(id){
+    delete this.items[id];
+    nurses.redistribute();
+    this.save();
+
+  },
+  save(){
+    ls.set('patients', this.items);
+  }
+};
+
+export let nurses = {
+  items: ls.get('nurses', []),
+  add(name) {
+    this.items.push(new Nurse(name));
+    this.redistribute();
+  },
+  update(nurse, name) {
+    nurse.name = name;
+    nurse.editing = false;
+    this.save();
+  },
+  remove(id) {
+    _.remove(this.items, {id});
+    this.redistribute();
+  },
+  calculateColors() {
+    this.items.forEach(n => {
+      n.score = _.sum(n.patients.map(p => patients.items[p].score));
+    });
+    this.save();
+  },
+  redistribute() {
+    let nurses = this.items;
+    if (!(meta.auto && nurses[0])) return;
+    nurses.forEach(n => n.patients = []);
+
+    // Sort patients by a combo of acuity & room-to-room-distance. b-a = DESC
+    let sorted = _.toArray(patients.items).sort((a, b) =>
+      b.score - a.score + Math.abs(+b.room - +a.room)
+    );
+    _.chunk(sorted, nurses.length).forEach(chunk => {
+      nurses.reverse();
+      chunk.forEach((p,i) => nurses[i].patients.push(p.id));
+    });
+    this.calculateColors();
+    // this.save();
+  },
+  save(){
+    ls.set('nurses', this.items);
+  }
+}

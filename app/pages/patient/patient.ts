@@ -1,5 +1,5 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {Patient, patients} from '../../patients';
+import {Patient, patients} from '../../data';
 import * as _ from 'lodash';
 
 @Page({
