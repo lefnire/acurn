@@ -1,6 +1,7 @@
 import {Page} from 'ionic-angular';
 import {Patient, patients} from '../../patients';
 import * as _ from 'lodash';
+import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
 
 class Nurse {
   patients: Patient[];
@@ -11,13 +12,18 @@ class Nurse {
 }
 
 @Page({
-  templateUrl: 'build/pages/assignments/assignments.html'
+  templateUrl: 'build/pages/assignments/assignments.html',
+  directives: [Dragula],
+  viewProviders: [DragulaService],
 })
 export class AssignmentsPage {
   adding: boolean;
   nurses: Nurse[];
 
-  constructor() {
+  constructor(private dragulaService: DragulaService) {
+    dragulaService.setOptions('bag-one', {
+      moves: (el, container, handle) => ~handle.className.indexOf('ar-move-icon')
+    });
     this.nurses = JSON.parse(localStorage.getItem('nurses') || "[]");
     this.redistribute();
     patients.ee.subscribe(data => this.redistribute());

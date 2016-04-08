@@ -34,10 +34,13 @@
     </ion-item>
 
 
-    <ion-item *ngFor="#patient of nurse.patients">
-      <h2>Room #{{patient.room}}</h2>
-      <p>Score: {{patient.score}}</p>
-    </ion-item>
+    <div [dragula]='"bag-one"' style='min-height:10px;'>
+      <ion-item *ngFor="#patient of nurse.patients">
+        <ion-icon name="move" class="ar-move-icon" item-left></ion-icon>
+        <h2>Room #{{patient.room}}</h2>
+        <p>Score: {{patient.score}}</p>
+      </ion-item>
+    </div>
 
   </ion-item-group>
 
