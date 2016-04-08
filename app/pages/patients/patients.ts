@@ -7,7 +7,7 @@ import * as _ from 'lodash';
   templateUrl: 'build/pages/patients/patients.html',
 })
 export class PatientsPage {
-  patients: Patient[];
+  patients: Object;
   nav: NavController;
 
   constructor(nav: NavController) {

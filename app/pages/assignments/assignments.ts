@@ -13,15 +13,19 @@ export class AssignmentsPage {
   adding: boolean;
   nurses: Nurse[];
   auto: boolean;
-  patients: any;
+  patients: Object;
 
   constructor(private dragulaService: DragulaService) {
     dragulaService.setOptions('bag-one', {
       moves: (el, container, handle) => ~handle.className.indexOf('ar-move-icon')
     });
+
+    // TODO Look into dragulaService subscribe options
+    dragulaService.dropModel.subscribe(() => nurses.calculateColors());
+    dragulaService.removeModel.subscribe(() => nurses.calculateColors());
+
     this.nurses = nurses.items;
     this.patients = patients.items;
-    console.log(this.patients);
     this.auto = meta.auto;
   }
 

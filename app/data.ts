@@ -122,8 +122,9 @@ export class Patient {
 }
 
 export class Nurse {
-  patients: string[]; // ids
+  patients: number[]; // ids
   id: number;
+  score: number; // color
 
   constructor(public name: string){
     this.id = +new Date;
@@ -133,8 +134,13 @@ export class Nurse {
 
 // ------------------
 
-export let meta = {
+export let meta;
+export let patients;
+export let nurses;
+
+meta = {
   auto: ls.get('auto', true),
+
   toggleAuto() {
     this.auto = !this.auto;
     ls.set('auto', this.auto);
@@ -145,9 +151,10 @@ export let meta = {
   }
 };
 
-export let patients = {
+patients = {
   items: ls.get('patients', {}),
-  add(patient){
+
+  add(patient) {
     this.items[patient.id] = patient;
     //nurses.addPatient(patient);
     nurses.redistribute();
@@ -164,8 +171,9 @@ export let patients = {
   }
 };
 
-export let nurses = {
+nurses =  {
   items: ls.get('nurses', []),
+
   add(name) {
     this.items.push(new Nurse(name));
     this.redistribute();
@@ -204,4 +212,4 @@ export let nurses = {
   save(){
     ls.set('nurses', this.items);
   }
-}
+};

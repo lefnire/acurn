@@ -39,7 +39,7 @@
     </ion-item>
 
 
-    <div [dragula]='"bag-one"' style='min-height:10px;'>
+    <div [dragula]='"bag-one"' [dragulaModel]="nurse.patients" style='min-height:10px;'>
       <ion-item *ngFor="#p of nurse.patients">
         <ion-icon name="move" class="ar-move-icon" [style.display]="auto ? 'none' : 'inherit'" item-left></ion-icon>
 
