@@ -11,7 +11,7 @@ export class PatientsPage {
   nav: NavController;
 
   constructor(nav: NavController) {
-    this.patients = patients.items;
+    this.patients = patients;
     this.nav = nav;
   }
 
@@ -27,6 +27,4 @@ export class PatientsPage {
   edit(patient: Patient) {
     this.nav.push(PatientPage, {patient});
   }
-
-  remove = patients.remove
 }

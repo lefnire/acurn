@@ -11,9 +11,9 @@ import {nurses, patients, meta, Nurse, Patient} from '../../data';
 })
 export class AssignmentsPage {
   adding: boolean;
-  nurses: Nurse[];
-  auto: boolean;
+  nurses: Object;
   patients: Object;
+  meta: Object;
 
   constructor(private dragulaService: DragulaService) {
     dragulaService.setOptions('bag-one', {
@@ -24,17 +24,13 @@ export class AssignmentsPage {
     dragulaService.dropModel.subscribe(() => nurses.calculateColors());
     dragulaService.removeModel.subscribe(() => nurses.calculateColors());
 
-    this.nurses = nurses.items;
-    this.patients = patients.items;
-    this.auto = meta.auto;
+    this.nurses = nurses;
+    this.patients = patients;
+    this.meta = meta;
   }
 
   add(name) {
-    nurses.add(name);
+    this.nurses.add(name);
     this.adding = false;
   }
-
-  save = nurses.update
-  remove = nurses.remove
-  toggleAuto = meta.toggleAuto
 }

@@ -1,7 +1,7 @@
 <ion-navbar *navbar>
   <ion-title>Assignments</ion-title>
   <ion-buttons end>
-    <button (click)="toggleAuto()" [ngClass]="{'button-primary': auto, 'bar-button-outline': !auto, 'bar-button-default': false}">
+    <button (click)="meta.toggleAuto()" [ngClass]="{'button-primary': meta.auto, 'bar-button-outline': !meta.auto, 'bar-button-default': false}">
       Auto
     </button>
   </ion-buttons>
@@ -9,7 +9,7 @@
 
 <ion-content class="assignments">
 
-  <ion-card *ngIf="!nurses[0]">
+  <ion-card *ngIf="!nurses.items[0]">
     <ion-card-content>
       <p>Here nurses will be assigned to patients in an effort to equally distribute load (based on acuity). Click (+) to add a nurse, and patients will be automatically distributed.</p>
       <p>Note: we're working on manual assignment (with visual help); follow <a href="https://github.com/driftyco/ionic/issues/5595" target="_blank">this issue</a>.</p>
@@ -24,7 +24,7 @@
     <button outline item-right (click)="adding = false">Cancel</button>
   </ion-item>
 
-  <ion-item-group *ngFor="#nurse of nurses; #i=index">
+  <ion-item-group *ngFor="#nurse of nurses.items; #i=index">
     <ion-item-divider (click)="nurse.editing=true" *ngIf="!nurse.editing" [class]="nurse.score < 4 ? 'good' : nurse.score > 10 ? 'bad' : ''">
       {{nurse.name}}
     </ion-item-divider>
@@ -33,18 +33,18 @@
       <ion-label floating>Nurse's Name</ion-label>
       <ion-input type="text" #editName value="{{nurse.name}}" autofocus></ion-input>
 
-      <button outline item-right (click)="save(nurse, editName.value)">Add</button>
+      <button outline item-right (click)="nurses.save(nurse, editName.value)">Add</button>
       <button outline item-right (click)="nurse.editing = false">Cancel</button>
-      <button outline item-right (click)="remove(nurse.id)">Delete</button>
+      <button outline item-right (click)="nurses.remove(nurse.id)">Delete</button>
     </ion-item>
 
 
     <div [dragula]='"bag-one"' [dragulaModel]="nurse.patients" style='min-height:10px;'>
       <ion-item *ngFor="#p of nurse.patients">
-        <ion-icon name="move" class="ar-move-icon" [style.display]="auto ? 'none' : 'inherit'" item-left></ion-icon>
+        <ion-icon name="move" class="ar-move-icon" [style.display]="meta.auto ? 'none' : 'inherit'" item-left></ion-icon>
 
-        <h2>Room #{{patients[p].room}}</h2>
-        <p>Score: {{patients[p].score}}</p>
+        <h2>Room #{{patients.items[p].room}}</h2>
+        <p>Score: {{patients.items[p].score}}</p>
       </ion-item>
     </div>
 

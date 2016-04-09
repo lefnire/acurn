@@ -156,7 +156,6 @@ patients = {
 
   add(patient) {
     this.items[patient.id] = patient;
-    //nurses.addPatient(patient);
     nurses.redistribute();
     this.save();
   },
@@ -164,7 +163,6 @@ patients = {
     delete this.items[id];
     nurses.redistribute();
     this.save();
-
   },
   save(){
     ls.set('patients', this.items);
@@ -194,18 +192,41 @@ nurses =  {
     this.save();
   },
   redistribute() {
-    let nurses = this.items;
-    if (!(meta.auto && nurses[0])) return;
-    nurses.forEach(n => n.patients = []);
+    let _nurses = this.items,
+      _patients = patients.items;
 
-    // Sort patients by a combo of acuity & room-to-room-distance. b-a = DESC
-    let sorted = _.toArray(patients.items).sort((a, b) =>
-      b.score - a.score + Math.abs(+b.room - +a.room)
-    );
-    _.chunk(sorted, nurses.length).forEach(chunk => {
-      nurses.reverse();
-      chunk.forEach((p,i) => nurses[i].patients.push(p.id));
-    });
+    // deleted the last nurse / nothing to do
+    if (!_nurses[0])
+      return this.save();
+
+    // Auto-distribute: equitably distribute patients amongst nurses
+    if (meta.auto) {
+      _nurses.forEach(n => n.patients = []);
+
+      // Sort patients by a combo of acuity & room-to-room-distance. b-a = DESC
+      let sorted = _.toArray(_patients).sort((a, b) =>
+        b.score - a.score + Math.abs(+b.room - +a.room)
+      );
+      _.chunk(sorted, _nurses.length).forEach(chunk => {
+        _nurses.reverse();
+        chunk.forEach((p,i) => _nurses[i].patients.push(p.id));
+      });
+
+    // Not auto; still perform data cleanup
+    } else {
+      let n_pids = _.flatMap(_nurses, 'patients'),
+        pids = _.map(_patients, 'id');
+
+      // The patient was deleted. Find the nurse with this patient and remove the patient
+      _.difference(n_pids, pids).forEach(pid =>
+        _nurses.forEach(n => _.pull(n.patients, pid))
+      );
+      // The nurse was deleted. Send the patient to someone else
+      _.difference(pids, n_pids).forEach(pid =>
+        _.last(_nurses).patients.push(pid)
+      );
+    }
+
     this.calculateColors();
     // this.save();
   },
