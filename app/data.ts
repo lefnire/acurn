@@ -79,26 +79,26 @@ export class Patient {
     }, {
       label: 'Psychosocial or therapeutic interventions',
       items: [[
-        {label: '≤ 2 interventions per shift'},
+        {label: '≤ 2 interventions per shift', radio: 'interventions'},
       ], [
-        {label: '3-5 interventions per shift'},
+        {label: '3-5 interventions per shift', radio: 'interventions'},
       ], [
-        {label: '6-10 interventions per shift'},
+        {label: '6-10 interventions per shift', radio: 'interventions'},
         {label: 'Diagnosis of delirium'},
         {label: 'End of life'},
       ], [
-        {label: '> 10 interventions per shift'},
+        {label: '> 10 interventions per shift', radio: 'interventions'},
       ]]
     }, {
       label: 'Medications (oral)',
       items: [[
-        {label: '1-5'},
+        {label: '1-5', radio: 'medications'},
       ], [
-        {label: '6-10'},
+        {label: '6-10', radio: 'medications'},
       ], [
-        {label: '11-15'},
+        {label: '11-15', radio: 'medications'},
       ], [
-        {label: '≥ 16'},
+        {label: '≥ 16', radio: 'medications'},
       ]]
     }, {
       label: 'Complicated IV drugs & other meds',

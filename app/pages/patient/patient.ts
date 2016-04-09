@@ -26,4 +26,12 @@ export class PatientPage {
     patients.add(this.patient);
     this.nav.pop();
   }
+
+  toggleOthers(q) {
+    if (!q.radio) return;
+    _.flatMapDeep(this.patient.form, 'items').forEach(other => {
+      if (other.radio === q.radio && other !== q)
+        other.value = false;
+    });
+  }
 }

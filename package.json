@@ -7,7 +7,7 @@
     "ionic-angular": "2.0.0-beta.3",
     "ionic-native": "^1.1.0",
     "ionicons": "3.0.0-alpha.3",
-    "lodash": "^4.6.1",
+    "lodash": "^v4.9.0",
     "ng2-dragula": "^1.1.6",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.0",
