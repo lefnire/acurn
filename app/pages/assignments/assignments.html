@@ -33,7 +33,7 @@
       <ion-label floating>Nurse's Name</ion-label>
       <ion-input type="text" #editName value="{{nurse.name}}" autofocus></ion-input>
 
-      <button outline item-right (click)="nurses.save(nurse, editName.value)">Add</button>
+      <button outline item-right (click)="nurses.update(nurse, editName.value)">Save</button>
       <button outline item-right (click)="nurse.editing = false">Cancel</button>
       <button outline item-right (click)="nurses.remove(nurse.id)">Delete</button>
     </ion-item>
