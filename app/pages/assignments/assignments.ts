@@ -30,7 +30,7 @@ export class AssignmentsPage {
   }
 
   add(name) {
-    this.nurses.add(name);
+    nurses.add(name);
     this.adding = false;
   }
 }

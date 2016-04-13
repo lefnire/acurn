@@ -185,10 +185,28 @@ nurses =  {
     _.remove(this.items, {id});
     this.redistribute();
   },
+
+  //http://jsfiddle.net/hiddenloop/tpejt/
+  _stats(a) {
+    var r = {mean: 0, variance: 0, deviation: 0}, t = a.length;
+    for(var m, s = 0, l = t; l--; s += a[l]);
+    for(m = r.mean = s / t, l = t, s = 0; l--; s += Math.pow(a[l] - m, 2));
+    return r.deviation = Math.sqrt(r.variance = s / t), r;
+  },
+
   calculateColors() {
-    this.items.forEach(n => {
+    let _nurses = this.items;
+
+    _nurses.forEach(n => {
       n.score = _.sum(n.patients.map(p => patients.items[p].score));
     });
+    let stats = this._stats(_.map(_nurses, 'score')),
+      low = stats.mean - stats.deviation,
+      high = stats.mean + stats.deviation;
+    _nurses.forEach(n => {
+      n.score = n.score < low ? -1 : n.score > high ? 1 : 0;
+    });
+
     this.save();
   },
   redistribute() {

@@ -25,7 +25,7 @@
   </ion-item>
 
   <ion-item-group *ngFor="#nurse of nurses.items; #i=index">
-    <ion-item-divider (click)="nurse.editing=true" *ngIf="!nurse.editing" [class]="nurse.score < 4 ? 'good' : nurse.score > 10 ? 'bad' : ''">
+    <ion-item-divider (click)="nurse.editing=true" *ngIf="!nurse.editing" [class]="nurse.score === -1 ? 'good' : nurse.score === 1 ? 'bad' : ''">
       {{nurse.name}}
     </ion-item-divider>
 
