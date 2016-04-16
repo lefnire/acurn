@@ -159,7 +159,7 @@ patients = {
     nurses.redistribute();
     this.save();
   },
-  remove(id){
+  remove(id) {
     delete this.items[id];
     nurses.redistribute();
     this.save();

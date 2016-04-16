@@ -1,7 +1,7 @@
 import 'es6-shim';
 import {App, Platform} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {TabsPage} from './pages/tabs';
+import {AssignmentsPage} from './pages/assignments/assignments';
 
 
 @App({
@@ -9,7 +9,7 @@ import {TabsPage} from './pages/tabs';
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = TabsPage;
+  rootPage: any = AssignmentsPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

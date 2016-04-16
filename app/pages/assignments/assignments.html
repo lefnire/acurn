@@ -9,10 +9,20 @@
 
 <ion-content class="assignments">
 
-  <ion-card *ngIf="!nurses.items[0]">
+  <ion-card *ngIf="isEmpty(patients.items) && !nurses.items[0]">
+    <ion-card-header>
+      Patient Acuity & Nurse Assignments Tool
+    </ion-card-header>
     <ion-card-content>
-      <p>Here nurses will be assigned to patients in an effort to equally distribute load (based on acuity). Click (+) to add a nurse, and patients will be automatically distributed.</p>
-      <p>Note: we're working on manual assignment (with visual help); follow <a href="https://github.com/driftyco/ionic/issues/5595" target="_blank">this issue</a>.</p>
+      <p>This tool assesses patient acuity levels and automatically assigns patients to nurses equitably, based on acuity and room distance. Originally from <a href="http://www.americannursetoday.com/wp-content/uploads/2014/03/ant3-Workforce-Management-Acuity-304.pdf" target="_blank">American Nurse Today v9.3</a></p>
+      <p>Click (+) below to add patients and nurses. Toggle "Auto" above if you want to manually distribute patients.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="xorEmpty() && !adding">
+    <ion-card-content>
+      <p *ngIf="isEmpty(patients.items)">Tap (+) to add a patient.</p>
+      <p *ngIf="!nurses.items[0]">Tap (+) to add a nurse.</p>
     </ion-card-content>
   </ion-card>
 
@@ -20,9 +30,17 @@
     <ion-label floating>Nurse's Name</ion-label>
     <ion-input type="text" #name autofocus></ion-input>
 
-    <button outline item-right (click)="add(name.value)">Add</button>
+    <button outline item-right (click)="addNurse(name.value)">Add</button>
     <button outline item-right (click)="adding = false">Cancel</button>
   </ion-item>
+
+  <ion-list *ngIf='!nurses.items[0] && !isEmpty(patients.items)'>
+    <ion-item *ngFor="#patient of toArray(patients.items); #i=index" (click)="editPatient(patient)">
+      <h2>Room #{{patient.room}}</h2>
+      <p>Score: {{patient.score}}</p>
+      <ion-icon item-right (click)="patients.remove(patient.id)" name="trash"></ion-icon>
+    </ion-item>
+  </ion-list>
 
   <ion-item-group *ngFor="#nurse of nurses.items; #i=index">
     <ion-item-divider (click)="nurse.editing=true" *ngIf="!nurse.editing" [class]="nurse.score === -1 ? 'good' : nurse.score === 1 ? 'bad' : ''">
@@ -42,16 +60,18 @@
     <div [dragula]='"bag-one"' [dragulaModel]="nurse.patients" style='min-height:10px;'>
       <ion-item *ngFor="#p of nurse.patients">
         <ion-icon name="move" class="ar-move-icon" [style.display]="meta.auto ? 'none' : 'inherit'" item-left></ion-icon>
-
-        <h2>Room #{{patients.items[p].room}}</h2>
-        <p>Score: {{patients.items[p].score}}</p>
+        <div (click)="editPatient(patients.items[p])">
+          <h2>Room #{{patients.items[p].room}}</h2>
+          <p>Score: {{patients.items[p].score}}</p>
+        </div>
+        <ion-icon item-right (click)="patients.remove(p)" name="trash"></ion-icon>
       </ion-item>
     </div>
 
   </ion-item-group>
 
 
-  <button fab fab-bottom fab-right (click)="adding = true" *ngIf="!adding">
+  <button fab fab-bottom fab-right (click)="clickAdd()" [style.display]="adding? 'none' : 'inherit'">
     <ion-icon name="add"></ion-icon>
   </button>
 
